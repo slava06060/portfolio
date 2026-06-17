@@ -5,75 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artist Portfolio</title>
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="top">
 
-    <div class="page">
+<div class="page">
 
-        <!-- NAVIGATION -->
+    <nav class="navbar">
 
-        <nav class="navbar">
-            <div class="logo">Portfolio</div>
+        <a href="#top" class="logo" id="scrollTopBtn">
+            Portfolio
+        </a>
 
-            <div class="nav-links">
-                <a href="#gallery">My Work</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About Me</a>
-            </div>
-        </nav>
+        <div class="nav-links">
+            <a href="#">My Work</a>
+            <a href="#">Projects</a>
+            <a href="#">About Me</a>
+        </div>
 
-        <!-- HERO -->
+    </nav>
 
-        <section class="hero">
+    <section class="hero">
 
-            <!-- BIG ARTWORK BACKGROUND -->
+        <div class="hero-artwork">
+            <img src="images/big-artwork.png" alt="">
+        </div>
 
-            <div class="hero-artwork">
-                <img src="images/big-artwork.png" alt="">
-                <div class="fade-bottom"></div>
-            </div>
+        <div class="about-container">
 
-            <!-- LEFT SIDE -->
+            <div class="character-card">
 
-            <div class="about-container">
+                <img
+                    src="images/me.png"
+                    alt=""
+                    class="artist-image"
+                >
 
-                <div class="character-card">
+                <div class="about-box">
 
-                    <img
-                        src="images/me.png"
-                        alt="Me"
-                        class="artist-image"
-                    >
+                    <h2>Hello!</h2>
 
-                    <div class="about-box">
-
-                        <h2>Hello!</h2>
-
-                        <p>
-                            I'm a visual artist who enjoys creating
-                            portraits, still life pieces and nature-inspired
-                            artwork. Welcome to my creative world.
-                        </p>
-
-                    </div>
+                    <p>
+                        I'm a visual artist who enjoys creating
+                        portraits, still life pieces and nature-inspired
+                        artwork. Welcome to my creative world.
+                    </p>
 
                 </div>
 
-                <button class="about-btn">
-                    More About Me
-                </button>
-
             </div>
 
-        </section>
+            <button class="about-btn">
+                More About Me
+            </button>
 
-        <!-- GALLERY -->
+        </div>
 
-        <section id="gallery" class="gallery">
+        <div class="gallery">
 
             <div class="art-card">
                 <div class="card-image">
@@ -82,7 +73,6 @@
 
                 <div class="card-content">
                     <h3>Portrait</h3>
-                    <p>Expressive portrait artworks.</p>
                 </div>
             </div>
 
@@ -93,7 +83,6 @@
 
                 <div class="card-content">
                     <h3>Still Life</h3>
-                    <p>Classic observational studies.</p>
                 </div>
             </div>
 
@@ -104,15 +93,16 @@
 
                 <div class="card-content">
                     <h3>Nature</h3>
-                    <p>Landscapes and natural beauty.</p>
                 </div>
             </div>
 
-        </section>
+        </div>
 
-    </div>
+    </section>
 
-    <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
