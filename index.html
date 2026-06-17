@@ -1,35 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-    <h1>Slava</h1>
-    <p>Web Developer / Designer</p>
-  </header>
+    <div class="page">
 
-  <section>
-    <h2>About Me</h2>
-    <p>I create websites using HTML, CSS, JavaScript, and PHP.</p>
-  </section>
+        <!-- NAVIGATION -->
 
-  <section>
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Planner Project</h3>
-      <p>A calendar/task planner made with PHP and MySQL.</p>
+        <nav class="navbar">
+            <div class="logo">Portfolio</div>
+
+            <div class="nav-links">
+                <a href="#gallery">My Work</a>
+                <a href="#projects">Projects</a>
+                <a href="#about">About Me</a>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <!-- BIG ARTWORK BACKGROUND -->
+
+            <div class="hero-artwork">
+                <img src="images/big-artwork.png" alt="">
+                <div class="fade-bottom"></div>
+            </div>
+
+            <!-- LEFT SIDE -->
+
+            <div class="about-container">
+
+                <div class="character-card">
+
+                    <img
+                        src="images/me.png"
+                        alt="Me"
+                        class="artist-image"
+                    >
+
+                    <div class="about-box">
+
+                        <h2>Hello!</h2>
+
+                        <p>
+                            I'm a visual artist who enjoys creating
+                            portraits, still life pieces and nature-inspired
+                            artwork. Welcome to my creative world.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button class="about-btn">
+                    More About Me
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- GALLERY -->
+
+        <section id="gallery" class="gallery">
+
+            <div class="art-card">
+                <div class="card-image">
+                    <img src="images/portrait.jpg" alt="">
+                </div>
+
+                <div class="card-content">
+                    <h3>Portrait</h3>
+                    <p>Expressive portrait artworks.</p>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <div class="card-image">
+                    <img src="images/still-life.jpg" alt="">
+                </div>
+
+                <div class="card-content">
+                    <h3>Still Life</h3>
+                    <p>Classic observational studies.</p>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <div class="card-image">
+                    <img src="images/nature.jpg" alt="">
+                </div>
+
+                <div class="card-content">
+                    <h3>Nature</h3>
+                    <p>Landscapes and natural beauty.</p>
+                </div>
+            </div>
+
+        </section>
+
     </div>
-  </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
-  </section>
+    <script src="script.js"></script>
 
-  <script src="script.js"></script>
 </body>
 </html>
