@@ -3,7 +3,6 @@ const cards = document.querySelectorAll(".art-card");
 cards.forEach(card => {
 
     card.addEventListener("mousemove", e => {
-
         const rect = card.getBoundingClientRect();
 
         const x = e.clientX - rect.left;
@@ -20,7 +19,6 @@ cards.forEach(card => {
     });
 
     card.addEventListener("mouseleave", () => {
-
         card.style.transform =
         `perspective(1000px)
         rotateX(0deg)
@@ -31,13 +29,13 @@ cards.forEach(card => {
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-scrollTopBtn.addEventListener("click", e => {
+if(scrollTopBtn){
+    scrollTopBtn.addEventListener("click", e => {
+        e.preventDefault();
 
-    e.preventDefault();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     });
-
-});
+}
