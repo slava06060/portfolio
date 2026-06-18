@@ -301,8 +301,6 @@ body{
     box-shadow:
         0 35px 80px rgba(0,0,0,.25),
         0 0 55px rgba(255,255,255,1);
-
-    transform:translateY(-15px);
 }
 
 .card-image{
@@ -599,38 +597,35 @@ body{
 
 /* SKETCHBOOK MARQUEE */
 
-.marquee{
+.marquee {
     display:flex;
     block-size:var(--marquee-item-height);
-    margin-block:45px;
-
+    margin-block:60px;
     position:relative;
     overflow-x:hidden;
 
     mask-image:linear-gradient(
         to right,
         transparent,
-        black 20%,
-        black 80%,
+        black 15%,
+        black 85%,
         transparent
     );
 }
 
-.marquee--8{
+.marquee--8 {
     --marquee-item-width:180px;
-    --marquee-item-height:180px;
+    --marquee-item-height:220px;
     --marquee-duration:36s;
-    --marquee-items:8;
 }
 
-.marquee--6{
-    --marquee-item-width:220px;
-    --marquee-item-height:150px;
-    --marquee-duration:32s;
-    --marquee-items:6;
+.marquee--6 {
+    --marquee-item-width:180px;
+    --marquee-item-height:220px;
+    --marquee-duration:30s;
 }
 
-.marquee__item{
+.marquee__item {
     --marquee-item-offset:max(
         calc(var(--marquee-item-width) * var(--marquee-items)),
         calc(100% + var(--marquee-item-width))
@@ -642,77 +637,29 @@ body{
     );
 
     position:absolute;
-    inset-inline-start:var(--marquee-item-offset);
-
     width:var(--marquee-item-width);
     height:var(--marquee-item-height);
-
     object-fit:cover;
 
-    border-radius:25px;
+    inset-inline-start:var(--marquee-item-offset);
+    transform:translateX(-50%);
 
-    box-shadow:
-        0 20px 45px rgba(0,0,0,.18);
+    animation:go linear var(--marquee-duration) var(--marquee-delay) infinite;
 
-    animation:go linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    border-radius:28px;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
 
-.marquee__item:nth-child(4n){
-    border-top-right-radius:60px;
+.marquee--6 .marquee__item {
+    animation-direction:reverse;
 }
 
-.marquee__item:nth-child(4n + 1){
-    border-bottom-right-radius:60px;
+.marquee__item:hover {
+    transform:translateX(-50%) scale(1.08);
 }
 
-.marquee__item:nth-child(4n + 2){
-    border-bottom-left-radius:60px;
-}
-
-.marquee__item:nth-child(4n + 3){
-    border-top-left-radius:60px;
-}
-
-.marquee--8 .marquee__item:nth-of-type(1),
-.marquee--6 .marquee__item:nth-of-type(1){
-    --marquee-item-index:1;
-}
-
-.marquee--8 .marquee__item:nth-of-type(2),
-.marquee--6 .marquee__item:nth-of-type(2){
-    --marquee-item-index:2;
-}
-
-.marquee--8 .marquee__item:nth-of-type(3),
-.marquee--6 .marquee__item:nth-of-type(3){
-    --marquee-item-index:3;
-}
-
-.marquee--8 .marquee__item:nth-of-type(4),
-.marquee--6 .marquee__item:nth-of-type(4){
-    --marquee-item-index:4;
-}
-
-.marquee--8 .marquee__item:nth-of-type(5),
-.marquee--6 .marquee__item:nth-of-type(5){
-    --marquee-item-index:5;
-}
-
-.marquee--8 .marquee__item:nth-of-type(6),
-.marquee--6 .marquee__item:nth-of-type(6){
-    --marquee-item-index:6;
-}
-
-.marquee--8 .marquee__item:nth-of-type(7){
-    --marquee-item-index:7;
-}
-
-.marquee--8 .marquee__item:nth-of-type(8){
-    --marquee-item-index:8;
-}
-
-@keyframes go{
-    to{
+@keyframes go {
+    to {
         inset-inline-start:calc(var(--marquee-item-width) * -1);
     }
 }
@@ -763,27 +710,44 @@ body{
     filter:blur(0);
 }
 
+/* slower smooth hover for cards/buttons */
 .art-card,
-.about-btn,
 .project-card,
 .theme-card,
 .material-card,
-.subpage-card{
+.subpage-card,
+.about-btn,
+.about-box{
     transition:
-        transform .45s cubic-bezier(.22,1,.36,1),
-        box-shadow .45s ease,
-        background .45s ease,
-        border-color .45s ease;
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        box-shadow 1.2s ease,
+        background 1.2s ease,
+        border-color 1.2s ease,
+        filter 1.2s ease;
 }
 
+/* slower pop-out */
 .art-card:hover,
 .project-card:hover,
 .theme-card:hover,
 .material-card:hover,
 .subpage-card:hover{
-    box-shadow:
-        0 35px 90px rgba(0,0,0,.22),
-        0 0 45px rgba(255,255,255,.95);
+    transform:translateY(-18px) scale(1.025);
+}
+
+/* slower character hover */
+.character-card{
+    transition:transform 1.3s cubic-bezier(.16,1,.3,1);
+}
+
+.character-card:hover{
+    transform:translateY(-22px) scale(1.04);
+}
+
+.artist-image{
+    transition:
+        transform 1.3s cubic-bezier(.16,1,.3,1),
+        filter 1.3s ease;
 }
 
 .about-box,
@@ -870,11 +834,11 @@ body{
 .about-btn,
 .about-box{
     transition:
-        transform .75s cubic-bezier(.16,1,.3,1),
-        box-shadow .75s ease,
-        background .75s ease,
-        border-color .75s ease,
-        filter .75s ease;
+        transform 1.7s cubic-bezier(.19,1,.22,1),
+        box-shadow 1.7s cubic-bezier(.19,1,.22,1),
+        background 1.7s ease,
+        border-color 1.7s ease,
+        filter 1.7s ease;
     will-change:transform;
 }
 
@@ -899,7 +863,7 @@ body{
 
 /* ME.PNG: shadow follows transparent PNG shape */
 .character-card{
-    transition:transform .85s cubic-bezier(.16,1,.3,1);
+    transition:transform 1.7s cubic-bezier(.19,1,.22,1);
     will-change:transform;
 }
 
@@ -909,8 +873,8 @@ body{
 
 .artist-image{
     transition:
-        transform .85s cubic-bezier(.16,1,.3,1),
-        filter .85s ease;
+        transform 1.7s cubic-bezier(.19,1,.22,1),
+        filter 1.7s ease;
 
     filter:
         drop-shadow(0 35px 30px rgba(0,0,0,.28));
@@ -940,4 +904,72 @@ body{
         transform:translateY(0);
         filter:blur(0);
     }
+}
+
+/* MOBILE HERO */
+
+@media (max-width: 900px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+
+        background:
+            url("images/flower-bg.png")
+            center bottom / 100% auto no-repeat;
+    }
+
+    .about-container{
+        width:100%;
+        max-width:420px;
+    }
+
+    .gallery{
+        width:100%;
+        max-width:420px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        padding-top:190px;
+        padding-bottom:120px;
+
+        /* slightly smaller flower on mobile */
+        background-size:90% auto;
+    }
+
+    .hero-artwork{
+        height:70vh;
+    }
+
+    .artist-image{
+        width:220px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .hero{
+        background-size:85% auto;
+        padding-bottom:140px;
+    }
+
+    .hero-artwork{
+        height:60vh;
+    }
+
 }
