@@ -30,6 +30,7 @@ revealItems.forEach(item => {
     revealObserver.observe(item);
 });
 
+
 /* =========================
    THEME CARD HOVER EFFECT
 ========================= */
@@ -68,18 +69,82 @@ themeCards.forEach(card => {
 
 
 /* =========================
-   AUTO MARQUEE INDEXES
-   For infinite sketchbook scrolling
+   DRAG + AUTO INFINITE SKETCHBOOK
 ========================= */
 
 const marquees = document.querySelectorAll(".marquee");
 
-marquees.forEach(marquee => {
-    const items = marquee.querySelectorAll(".marquee__item");
+marquees.forEach((marquee, index) => {
+    const track = marquee.querySelector(".marquee__track");
 
-    marquee.style.setProperty("--marquee-items", items.length);
+    if (!track) return;
 
-    items.forEach((item, index) => {
-        item.style.setProperty("--marquee-item-index", index + 1);
+    // Duplicate images for infinite loop
+    track.innerHTML += track.innerHTML;
+
+    let isDragging = false;
+    let startX = 0;
+    let currentX = -track.scrollWidth / 4;
+    let previousX = currentX;
+
+    // 1st row moves right, 2nd row moves left
+    const direction = index % 2 === 0 ? 1 : -1;
+    const autoSpeed = direction * 0.35;
+
+    function fixLoopPosition() {
+        const halfWidth = track.scrollWidth / 2;
+
+        if (currentX <= -halfWidth) {
+            currentX += halfWidth;
+            previousX = currentX;
+        }
+
+        if (currentX >= 0) {
+            currentX -= halfWidth;
+            previousX = currentX;
+        }
+    }
+
+    function setPosition() {
+        fixLoopPosition();
+        track.style.transform = `translateX(${currentX}px)`;
+    }
+
+    setPosition();
+
+    marquee.addEventListener("pointerdown", e => {
+        isDragging = true;
+        startX = e.clientX;
+        previousX = currentX;
+        marquee.setPointerCapture(e.pointerId);
     });
+
+    marquee.addEventListener("pointermove", e => {
+        if (!isDragging) return;
+
+        currentX = previousX + (e.clientX - startX);
+        setPosition();
+    });
+
+    marquee.addEventListener("pointerup", () => {
+        isDragging = false;
+        previousX = currentX;
+    });
+
+    marquee.addEventListener("pointercancel", () => {
+        isDragging = false;
+        previousX = currentX;
+    });
+
+    function animate() {
+        if (!isDragging) {
+            currentX += autoSpeed;
+            previousX = currentX;
+            setPosition();
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 });

@@ -472,59 +472,40 @@ img{
    9. SKETCHBOOK MARQUEE
    ========================= */
 .marquee{
-    --travel-distance:calc(-100vw - (var(--marquee-item-width) * 2));
-
-    position:relative;
     width:100%;
-    height:var(--marquee-item-height);
-    margin-block:60px;
     overflow:hidden;
-
-    -webkit-mask-image:linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-    mask-image:linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    cursor:grab;
+    user-select:none;
+    touch-action:pan-y;
 }
 
-.marquee--8{
-    --marquee-item-width:220px;
-    --marquee-item-height:320px;
-    --marquee-duration:38s;
+.marquee:active{
+    cursor:grabbing;
 }
 
-.marquee--6{
-    --marquee-item-width:220px;
-    --marquee-item-height:320px;
-    --marquee-duration:34s;
-}
-
-.marquee__item{
-    position:absolute;
-    top:0;
-    left:100%;
-
-    width:var(--marquee-item-width);
-    height:var(--marquee-item-height);
-    border-radius:28px;
-
-    object-fit:cover;
-    object-position:center;
-    pointer-events:none;
-
-    box-shadow:0 18px 40px rgba(0,0,0,.12);
-
-    animation:marqueeMove var(--marquee-duration) linear infinite;
-    animation-delay:calc(
-        var(--marquee-duration) /
-        var(--marquee-items) *
-        (var(--marquee-item-index) - 1) * -1
-    );
-
-    backface-visibility:hidden;
-    transform:translate3d(0,0,0);
+.marquee__track{
+    display:flex;
+    gap:25px;
+    width:max-content;
     will-change:transform;
 }
 
-.marquee--6 .marquee__item{
-    animation-direction:reverse;
+.marquee__item{
+    position:static;
+    flex:0 0 auto;
+    width:220px;
+    height:320px;
+    object-fit:cover;
+    border-radius:28px;
+    pointer-events:none;
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+@media(max-width:600px){
+    .marquee__item{
+        width:150px;
+        height:220px;
+    }
 }
 
 /* =========================
@@ -551,16 +532,6 @@ img{
 
     to{
         transform:scale(1.04);
-    }
-}
-
-@keyframes marqueeMove{
-    from{
-        transform:translate3d(0,0,0);
-    }
-
-    to{
-        transform:translate3d(var(--travel-distance),0,0);
     }
 }
 
@@ -670,16 +641,6 @@ img{
 
     .theme-card{
         min-height:140px;
-    }
-
-    .marquee{
-        --travel-distance:calc(-270vw - (var(--marquee-item-width) * 2));
-    }
-
-    .marquee--8,
-    .marquee--6{
-        --marquee-item-width:150px;
-        --marquee-item-height:220px;
     }
 }
 
