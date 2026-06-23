@@ -53,28 +53,25 @@ cards.forEach(card => {
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
 if (scrollTopBtn) {
-
     scrollTopBtn.addEventListener("click", e => {
-
         e.preventDefault();
 
-        window.scrollTo({
+        const scrollElement = document.scrollingElement || document.documentElement;
+
+        scrollElement.scrollTo({
             top: 0,
             behavior: "smooth"
         });
-
     });
-
 }
 
+
 /* =========================
-   SCROLL REVEAL
+   SMOOTH REVEAL ON SCROLL
 ========================= */
 
 const revealItems = document.querySelectorAll(`
     .about-container,
-    .character-card,
-    .about-btn,
     .gallery,
     .art-card,
     .subpage-card,
@@ -84,29 +81,19 @@ const revealItems = document.querySelectorAll(`
     .section-title
 `);
 
-revealItems.forEach((item, index) => {
-
+revealItems.forEach(item => {
     item.classList.add("reveal");
-
-    item.style.transitionDelay =
-        `${index * 120}ms`;
-
 });
 
-const revealObserver =
-new IntersectionObserver(entries => {
-
+const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
         }
-
     });
-
 }, {
-    threshold: 0.15,
-    rootMargin: "0px 0px -80px 0px"
+    threshold: 0,
+    rootMargin: "0px 0px -5% 0px"
 });
 
 revealItems.forEach(item => {

@@ -6,30 +6,29 @@ const revealItems = document.querySelectorAll(`
     .section-title,
     .theme-card,
     .material-card,
-    .sketchbook-section,
-    .marquee
+    .sketchbook-section
 `);
 
 revealItems.forEach((item, index) => {
     item.classList.add("reveal");
-    item.style.transitionDelay = `${index * 100}ms`;
+    item.style.transitionDelay = `${Math.min(index * 60, 240)}ms`;
 });
 
 const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
+            revealObserver.unobserve(entry.target);
         }
     });
 }, {
-    threshold: 0.15,
-    rootMargin: "0px 0px -80px 0px"
+    threshold: 0.05,
+    rootMargin: "0px 0px -30px 0px"
 });
 
 revealItems.forEach(item => {
     revealObserver.observe(item);
 });
-
 
 /* =========================
    THEME CARD HOVER EFFECT
@@ -38,6 +37,11 @@ revealItems.forEach(item => {
 const themeCards = document.querySelectorAll(".theme-card, .material-card");
 
 themeCards.forEach(card => {
+    card.addEventListener("mouseenter", () => {
+        card.style.transition = "transform .18s ease, box-shadow .25s ease";
+        card.style.transform = "perspective(900px) translateY(-10px) scale(1.03)";
+    });
+
     card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
 
@@ -57,13 +61,8 @@ themeCards.forEach(card => {
     });
 
     card.addEventListener("mouseleave", () => {
-        card.style.transform = `
-            perspective(900px)
-            rotateX(0deg)
-            rotateY(0deg)
-            translateY(0)
-            scale(1)
-        `;
+        card.style.transition = "transform .2s ease, box-shadow .25s ease";
+        card.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateY(0) scale(1)";
     });
 });
 
