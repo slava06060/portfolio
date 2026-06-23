@@ -674,7 +674,7 @@ img{
     }
 
     .marquee{
-        --travel-distance:calc(-250vw - (var(--marquee-item-width) * 2));
+        --travel-distance:calc(-270vw - (var(--marquee-item-width) * 2));
     }
 
     .marquee--8,
