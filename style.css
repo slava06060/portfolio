@@ -622,7 +622,6 @@ img{
     .hero{
         padding-top:190px;
         padding-bottom:120px;
-        background-size:90% auto;
     }
 
     .hero-artwork{
@@ -687,10 +686,30 @@ img{
 @media(max-width:480px){
     .hero{
         padding-bottom:140px;
-        background-size:85% auto;
     }
 
     .hero-artwork{
         height:60vh;
+    }
+}
+
+@media(max-width:768px){
+    .hero{
+        padding-top:190px;
+        padding-bottom:120px;
+
+        background-image:url("images/flower-bg.png");
+        background-position:center bottom;
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+}
+
+@media(max-width:480px){
+    .hero{
+        padding-bottom:140px;
+
+        background-size:cover;
+        background-position:center bottom;
     }
 }
